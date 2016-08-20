@@ -4,19 +4,19 @@ using System.Collections;
 public class LaserScript : MonoBehaviour
 {
     public float LaserHitForceMultiplier = 5.0f;
-    public float LaserVelocity = 1000.0f;
+    public float LaserVelocity = 800.0f;
     public float LaserLength = 100.0f;
     public float LaserMaxDistance = 400.0f;
 
     private float TimeLastFired = 0.0f;
-    public float BulletsPerSeconds = 5.0f;
+    public float BulletsPerSeconds = 6.0f;
 
 	// Use this for initialization
 	void Start ()
 	{
         
 
-	   // Screen.lockCursor = true;
+	   Screen.lockCursor = true;
 	}
 	
 	// Update is called once per frame

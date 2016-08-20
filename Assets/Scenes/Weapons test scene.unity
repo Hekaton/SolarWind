@@ -538,8 +538,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LaserHitForceMultiplier: 5
-  LaserVelocity: 10
+  LaserVelocity: 1000
   LaserLength: 100
+  LaserMaxDistance: 400
   BulletsPerSeconds: 1
 --- !u!1 &1138521306
 GameObject:
@@ -741,7 +742,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 700
   field of view: 60
   orthographic: 0
   orthographic size: 5
