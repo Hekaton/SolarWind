@@ -37,13 +37,11 @@ public class MultiplayerShipController : MonoBehaviour {
 	void Update () {
 		for (int i = 0, ii = sails.Length; i < ii; i++) {
 			if (sails [i] != null) { // if sail exists
-				if (Input.GetButton (sails_buttons [i])) { // if the button is pressed, lower the sail
-					sails[i].transform.eulerAngles = sails_initialValues[i] + new Vector3(0, 0, closedAngle);
-				}else{ // raise the sail
-					sails[i].transform.eulerAngles = sails_initialValues[i] + new Vector3(0, 0, openAngle);
-				}
+				string tweakAxis = (i<2)?"P1Horizontal":"P2Horizontal";
+				sails[i].transform.localEulerAngles = sails_initialValues[i] + new Vector3(0, Input.GetAxis (tweakAxis) * 30, Mathf.LerpAngle(closedAngle, openAngle, Input.GetAxis (sails_buttons [i])));
 				// adjust forces based on sail deployment (just lerp it)
 			}
 		}
+		Debug.Log ("Axes: P1L: " + Input.GetAxis (sails_buttons [0]) + "; P1R: " + Input.GetAxis (sails_buttons [1]));
 	}
 }
