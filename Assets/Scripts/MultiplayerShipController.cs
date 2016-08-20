@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MultiplayerShipController : MonoBehaviour {
 
+	public float windForce = 100;
+
 	public GameObject P1SailLeft;
 	public string P1SailLeftButton = "P1_sailLeft";
 
@@ -31,17 +33,33 @@ public class MultiplayerShipController : MonoBehaviour {
 		for (int i = 0, ii = sails.Length; i < ii; i++) {
 			sails_initialValues[i] = sails[i].transform.eulerAngles;
 		}
-	}
+	}                                                                
 	
 	// Update is called once per frame
 	void Update () {
+
+		Vector3 fwd = transform.TransformDirection (new Vector3 (-1, 0, 0));
+		Vector3 u = transform.TransformDirection (new Vector3 (0, 1, 0));
+		Vector3 r = transform.TransformDirection (new Vector3 (0, 0, 1));
+
 		for (int i = 0, ii = sails.Length; i < ii; i++) {
 			if (sails [i] != null) { // if sail exists
 				string tweakAxis = (i<2)?"P1Horizontal":"P2Horizontal";
-				sails[i].transform.localEulerAngles = sails_initialValues[i] + new Vector3(0, Input.GetAxis (tweakAxis) * 30, Mathf.LerpAngle(closedAngle, openAngle, Input.GetAxis (sails_buttons [i])));
+
+				float tweak = Input.GetAxis (tweakAxis);
+				float intencity = Input.GetAxis (sails_buttons [i]);
+
+				sails[i].transform.localEulerAngles = sails_initialValues[i] + new Vector3(0, tweak * 30, Mathf.LerpAngle(closedAngle, openAngle, intencity));
 				// adjust forces based on sail deployment (just lerp it)
+				Rigidbody rb = GetComponent<Rigidbody>();
+				if (rb != null) {
+					Vector3 f = fwd * intencity * windForce;
+					Vector3 p = transform.position + (u + r - u * Mathf.Floor (i / 2)*2 - r * (i % 2)*2) * 10;
+					rb.AddForceAtPosition (f, p);
+					Debug.DrawRay (p, f*100);
+				}
 			}
 		}
-		Debug.Log ("Axes: P1L: " + Input.GetAxis (sails_buttons [0]) + "; P1R: " + Input.GetAxis (sails_buttons [1]));
+
 	}
 }
