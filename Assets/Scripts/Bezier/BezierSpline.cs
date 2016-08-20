@@ -201,5 +201,10 @@ public class BezierSpline : MonoBehaviour {
 			BezierControlPointMode.Aligned,
 			BezierControlPointMode.Aligned
 		};
+
+        for (int i = 0; i < 10; i++)
+        {
+            AddCurve();
+        }
 	}
 }
