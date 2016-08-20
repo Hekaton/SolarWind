@@ -12,7 +12,7 @@ public class BezierSpline : MonoBehaviour {
 	[SerializeField]
 	private bool loop;
 
-    public float deltaX = 50f;
+    public float deltaX = 75f;
 
     public float width = 100;
     public float height = 100;
