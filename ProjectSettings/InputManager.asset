@@ -7,7 +7,7 @@ InputManager:
   m_Axes:
   - serializedVersion: 3
     m_Name: P1Horizontal
-    descriptiveName: 
+    descriptiveName: Pan sails left or right based on P1's left stick
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
@@ -23,7 +23,7 @@ InputManager:
     joyNum: 1
   - serializedVersion: 3
     m_Name: P2Horizontal
-    descriptiveName: 
+    descriptiveName: Pan sails left or right based on P2's left stick
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
@@ -151,7 +151,7 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: P1Horizontal
-    descriptiveName: 
+    descriptiveName: keyboard version of P1's sail controls
     descriptiveNegativeName: 
     negativeButton: a
     positiveButton: s
@@ -167,7 +167,7 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: P2Horizontal
-    descriptiveName: 
+    descriptiveName: keyboard version of P2's sail controls
     descriptiveNegativeName: 
     negativeButton: l
     positiveButton: ;
@@ -295,7 +295,7 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: P1_sailLeft
-    descriptiveName: 
+    descriptiveName: open/close left sail using controller triggers
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: q
@@ -311,7 +311,7 @@ InputManager:
     joyNum: 1
   - serializedVersion: 3
     m_Name: P1_sailRight
-    descriptiveName: 
+    descriptiveName: open/close right sail using controller triggers
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: w
@@ -327,7 +327,7 @@ InputManager:
     joyNum: 1
   - serializedVersion: 3
     m_Name: P2_sailLeft
-    descriptiveName: 
+    descriptiveName: open/close left sail using controller triggers
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: o
@@ -343,7 +343,7 @@ InputManager:
     joyNum: 2
   - serializedVersion: 3
     m_Name: P2_sailRight
-    descriptiveName: 
+    descriptiveName: open/close right sail using controller triggers
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: p
@@ -355,5 +355,69 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
+    axis: 0
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: P1_sailLeft
+    descriptiveName: open/close right sail using using keyboard
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: q
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 5
+    dead: 0.001
+    sensitivity: 5
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: P1_sailRight
+    descriptiveName: open/close right sail using using keyboard
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: w
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 5
+    dead: 0.001
+    sensitivity: 5
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: P2_sailLeft
+    descriptiveName: open/close left sail using keyboard
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: o
+    altNegativeButton: 
+    altPositiveButton: joystick button 1
+    gravity: 5
+    dead: 0.001
+    sensitivity: 5
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: P2_sailRight
+    descriptiveName: open/close right sail using using keyboard
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: p
+    altNegativeButton: 
+    altPositiveButton: joystick button 1
+    gravity: 5
+    dead: 0.001
+    sensitivity: 5
+    snap: 0
+    invert: 0
+    type: 0
     axis: 0
     joyNum: 2
