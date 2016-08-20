@@ -1,14 +1,19 @@
 fileFormatVersion: 2
-guid: f6663d3b8cec7445ab2d62c2f392791b
+<<<<<<< Updated upstream
+guid: 04f4542bc7899764387b27388b325ce5
+timeCreated: 1471721475
+=======
+guid: a21d1db7032de487a9a1be52cf12dd2f
 timeCreated: 1471719106
+>>>>>>> Stashed changes
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: default
-    400000: //RootNode
-    400002: default
+    100000: default
+    100002: //RootNode
+    400000: default
+    400002: //RootNode
     2300000: default
     3300000: default
     4300000: default

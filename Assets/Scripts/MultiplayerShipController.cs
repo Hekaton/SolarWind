@@ -54,7 +54,7 @@ public class MultiplayerShipController : MonoBehaviour {
 				Rigidbody rb = GetComponent<Rigidbody>();
 				if (rb != null) {
 					Vector3 f = fwd * intencity * windForce;
-					Vector3 p = transform.position + (u + r - u * Mathf.Floor (i / 2)*2 - r * (i % 2)*2) * 10;
+					Vector3 p = transform.position + (u - r - u * Mathf.Floor (i / 2) * 2 + r * (i==1||i==2?1:0) * 2) * 10;
 					rb.AddForceAtPosition (f, p);
 					Debug.DrawRay (p, f*100);
 				}
