@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using ProgressBar;
 
 public class BezierSpline : MonoBehaviour {
 
@@ -209,8 +210,8 @@ public class BezierSpline : MonoBehaviour {
         }
 	}
 
-
-
+    
+    public ProgressBarBehaviour obj;
 
     /// <summary>
     /// Trouver la plus courte distance / progression entre le point du vaisseau et la courbe.
@@ -220,6 +221,7 @@ public class BezierSpline : MonoBehaviour {
     public float ShortestDistanceFromPoint(Vector3 mypoint)
     {
 
+        
         /* Generate list of points on load scene to save some time */
         float Precision = 1000.0f;
         var bezierPoints = new List<Vector3>(Mathf.RoundToInt(Precision));
@@ -230,7 +232,7 @@ public class BezierSpline : MonoBehaviour {
         }
 
         float minDistance = float.MaxValue;
-        float progression = 0; //t [0-1]
+        float Progression = 0; //t [0-1]
 
         for (int i = 0; i < Precision; i++)
         {
@@ -238,12 +240,14 @@ public class BezierSpline : MonoBehaviour {
             if (d < minDistance)
             {
                 minDistance = d;
-                progression = i/Precision; // TODO set gui current progression
+                Progression = i/Precision; // TODO set gui current progression
             }
             bezierPoints.Add(GetPoint(i / Precision));
         }
 
-        Debug.Log("minDistance: " + minDistance + ", progression " + progression);
+        obj.Value = Progression * 100;
+        
+        Debug.Log("minDistance: " + minDistance + ", progression " + Progression * 100 + "%");
 
         return minDistance;
     }
