@@ -61,5 +61,13 @@ public class MultiplayerShipController : MonoBehaviour {
 			}
 		}
 
+	    
 	}
+
+     
+    public void FixedUpdate()
+    {
+        var spline = GameObject.FindObjectOfType<BezierSpline>();
+        var distance = spline.ShortestDistanceFromPoint(transform.position);
+    }
 }
