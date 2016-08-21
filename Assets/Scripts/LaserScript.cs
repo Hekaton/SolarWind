@@ -40,8 +40,10 @@ public class LaserScript : MonoBehaviour
        
 
 
-        var  bullet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        var  bulletrb = bullet.AddComponent<Rigidbody>();
+        var bullet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        var bulletrb = bullet.AddComponent<Rigidbody>();
+        //var bulletcollider = bullet.AddComponent<Collider>(); //already exists with primitive.sphere
+        
 
         var line = bullet.AddComponent<LineRenderer>();
             line.enabled = true;
@@ -52,6 +54,7 @@ public class LaserScript : MonoBehaviour
         bullet.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         bullet.transform.forward = new Vector3(transform.forward.x, transform.forward.y, transform.forward.z);
         bulletrb.useGravity = false;
+        bullet.tag = "Bullet";
 
         while(Vector3.Distance(bullet.transform.position, transform.position) <= LaserMaxDistance )
         {

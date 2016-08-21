@@ -27,7 +27,7 @@ public class MultiplayerShipController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		sails = new GameObject[]{ P1SailLeft, P1SailRight, P2SailLeft, P2SailRight };
-		sails_buttons = new string[]{ P1SailLeftButton, P1SailRightButton, P2SailLeftButton, P2SailRightButton };
+		sails_buttons = new string[]{ P1SailLeftButton, P1SailRightButton, P2SailRightButton, P2SailLeftButton };
 		sails_initialValues = new Vector3[sails.Length];
 
 		for (int i = 0, ii = sails.Length; i < ii; i++) {
