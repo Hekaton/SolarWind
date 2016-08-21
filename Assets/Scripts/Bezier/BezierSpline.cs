@@ -218,7 +218,7 @@ public class BezierSpline : MonoBehaviour {
     /// </summary>
     /// <param name="mypoint"> point central du vaisseau </param>
     /// <returns></returns>
-    public float ShortestDistanceFromPoint(Vector3 mypoint)
+    public float ShortestDistanceFromPoint(Vector3 mypoint, out float Progression)
     {
 
         
@@ -232,7 +232,7 @@ public class BezierSpline : MonoBehaviour {
         }
 
         float minDistance = float.MaxValue;
-        float Progression = 0; //t [0-1]
+        Progression = 0; //t [0-1]
 
         for (int i = 0; i < Precision; i++)
         {
@@ -251,4 +251,7 @@ public class BezierSpline : MonoBehaviour {
 
         return minDistance;
     }
+
+    
+
 }

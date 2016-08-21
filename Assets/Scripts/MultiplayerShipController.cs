@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MultiplayerShipController : MonoBehaviour {
 
     private bool isShipInTunnel;
 
+    public Text gameoverText;
+    public Text winText;
 
 	public float windForce = 100;
 
@@ -71,7 +74,7 @@ public class MultiplayerShipController : MonoBehaviour {
 				if (rb != null) {
 					Vector3 f = fwd * intencity * windForce;
 					Vector3 p = transform.position + (u - r - u * Mathf.Floor (i / 2) * 2 + r * (i==1||i==2?1:0) * 2) * 10;
-					rb.AddForceAtPosition (f, p);
+					if(isShipInTunnel) rb.AddForceAtPosition (f, p);
 					Debug.DrawRay (p, f*100);
 				}
 			}
@@ -86,7 +89,7 @@ public class MultiplayerShipController : MonoBehaviour {
             if ((Input.GetButton("Boost") && Input.GetButton("P2_boost")) || Input.GetKey(KeyCode.Space)){
                 // enable thrust
                 if(boostThrust != null ) boostThrust.enableEmission = true;
-                if(isShipInTunnel) rb.AddForce(fwd * 80);
+                rb.AddForce(fwd * 80);
                 fire.SetActive(true);
             } else {
                 if(boostThrust != null ) boostThrust.enableEmission = false;
@@ -117,7 +120,47 @@ public class MultiplayerShipController : MonoBehaviour {
     public void FixedUpdate()
     {
         var spline = GameObject.FindObjectOfType<BezierSpline>();
-        var distance = spline.ShortestDistanceFromPoint(transform.position);
+        float progress = 0;
+        var distance = spline.ShortestDistanceFromPoint(transform.position, out progress);
         isShipInTunnel = distance < 50;
+
+        Debug.Log(progress);
+
+        if(!isShipInTunnel && GetComponent<Rigidbody>().velocity == Vector3.zero) 
+        {
+            GameOver();
+        }
+
+
+        if(progress > 0.98) 
+        {
+            Win();
+        }
+
     }
+
+
+    void GameOver() 
+    {
+
+        Debug.Log("Game over");
+        gameoverText.enabled = true;
+        StartCoroutine(WaitForMainMenu());
+
+    }
+
+    void Win() 
+    {
+        Debug.Log("You win");
+        winText.enabled = true;
+        StartCoroutine(WaitForMainMenu());
+
+    }
+
+    IEnumerator WaitForMainMenu() {
+        yield return new WaitForSeconds(5);
+        Application.LoadLevel(0);
+    }
+
+    
 }
