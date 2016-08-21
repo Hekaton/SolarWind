@@ -3,6 +3,9 @@ using System.Collections;
 
 public class MultiplayerShipController : MonoBehaviour {
 
+    private bool isShipInTunnel;
+
+
 	public float windForce = 100;
 
 	public GameObject P1SailLeft;
@@ -33,6 +36,8 @@ public class MultiplayerShipController : MonoBehaviour {
 		for (int i = 0, ii = sails.Length; i < ii; i++) {
 			sails_initialValues[i] = sails[i].transform.eulerAngles;
 		}
+
+        isShipInTunnel = true;
 	}                                                                
 	
 	// Update is called once per frame
@@ -62,4 +67,17 @@ public class MultiplayerShipController : MonoBehaviour {
 		}
 
 	}
+
+    public void ExitTunnel()
+    {
+        isShipInTunnel = false;
+        Debug.Log("Exiting Tunnel");
+    }
+
+    public void EnterTunnel()
+    {
+        isShipInTunnel = true;
+        Debug.Log("Entering Tunnel");
+    }
+
 }
