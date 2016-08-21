@@ -31,6 +31,10 @@ public class MultiplayerShipController : MonoBehaviour {
 	public float lifeBarWidth = 1920;
 
 	public float life = 1;
+    
+    public ParticleSystem boostCharge;
+    public ParticleSystem boostThrust;
+    public GameObject fire;
 
 	// Use this for initialization
 	void Start () {
@@ -43,6 +47,8 @@ public class MultiplayerShipController : MonoBehaviour {
 		}
 
         isShipInTunnel = true;
+        if(boostCharge != null ) boostCharge.enableEmission = false;
+        if(boostThrust != null ) boostThrust.enableEmission = false;
 	}                                                                
 	
 	// Update is called once per frame
@@ -51,6 +57,7 @@ public class MultiplayerShipController : MonoBehaviour {
 		Vector3 fwd = transform.TransformDirection (new Vector3 (-1, 0, 0));
 		Vector3 u = transform.TransformDirection (new Vector3 (0, 1, 0));
 		Vector3 r = transform.TransformDirection (new Vector3 (0, 0, 1));
+		Rigidbody rb = GetComponent<Rigidbody>();
 
 		for (int i = 0, ii = sails.Length; i < ii; i++) {
 			if (sails [i] != null) { // if sail exists
@@ -61,7 +68,6 @@ public class MultiplayerShipController : MonoBehaviour {
 
 				sails[i].transform.localEulerAngles = sails_initialValues[i] + new Vector3(0, tweak * 30, Mathf.LerpAngle(closedAngle, openAngle, intencity));
 				// adjust forces based on sail deployment (just lerp it)
-				Rigidbody rb = GetComponent<Rigidbody>();
 				if (rb != null) {
 					Vector3 f = fwd * intencity * windForce;
 					Vector3 p = transform.position + (u - r - u * Mathf.Floor (i / 2) * 2 + r * (i==1||i==2?1:0) * 2) * 10;
@@ -71,7 +77,27 @@ public class MultiplayerShipController : MonoBehaviour {
 			}
 		}
 
-		lifeBar.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, life * lifeBarWidth);
+        //lifeBar.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, life * lifeBarWidth);
+
+        if (Input.GetButton("Boost") || Input.GetButton("P2_boost") || Input.GetKey(KeyCode.Space)) {
+            // enable thruster effect
+            if(boostCharge != null )
+                boostCharge.enableEmission = true;
+            if ((Input.GetButton("Boost") && Input.GetButton("P2_boost")) || Input.GetKey(KeyCode.Space)){
+                // enable thrust
+                if(boostThrust != null ) boostThrust.enableEmission = true;
+                rb.AddForce(fwd * 80);
+                fire.SetActive(true);
+            } else {
+                if(boostThrust != null ) boostThrust.enableEmission = false;
+                fire.SetActive(false);
+            }
+        } else {
+            // disable both
+            if(boostCharge != null ) boostCharge.enableEmission = false;
+            if(boostThrust != null ) boostThrust.enableEmission = false;
+            fire.SetActive(false);
+        }
 	}
 
     public void ExitTunnel()
