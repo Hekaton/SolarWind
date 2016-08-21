@@ -36,8 +36,11 @@ public class MultiplayerShipController : MonoBehaviour {
     public ParticleSystem boostThrust;
     public GameObject fire;
 
-	// Use this for initialization
-	void Start () {
+    public ParticleSystem boostChargeEffect;
+    public ParticleSystem boostThrustEffect;
+
+    // Use this for initialization
+    void Start () {
 		sails = new GameObject[]{ P1SailLeft, P1SailRight, P2SailLeft, P2SailRight };
 		sails_buttons = new string[]{ P1SailLeftButton, P1SailRightButton, P2SailRightButton, P2SailLeftButton };
 		sails_initialValues = new Vector3[sails.Length];
@@ -57,9 +60,13 @@ public class MultiplayerShipController : MonoBehaviour {
 		Vector3 fwd = transform.TransformDirection (new Vector3 (-1, 0, 0));
 		Vector3 u = transform.TransformDirection (new Vector3 (0, 1, 0));
 		Vector3 r = transform.TransformDirection (new Vector3 (0, 0, 1));
+<<<<<<< HEAD
 		Rigidbody rb = GetComponent<Rigidbody>();
+=======
+        Rigidbody rb = GetComponent<Rigidbody>();
+>>>>>>> 9fd148963d123f4ad98d44454cb2fb6df70f5e56
 
-		for (int i = 0, ii = sails.Length; i < ii; i++) {
+        for (int i = 0, ii = sails.Length; i < ii; i++) {
 			if (sails [i] != null) { // if sail exists
 				string tweakAxis = (i<2)?"P1Horizontal":"P2Horizontal";
 
@@ -77,6 +84,7 @@ public class MultiplayerShipController : MonoBehaviour {
 			}
 		}
 
+<<<<<<< HEAD
         //lifeBar.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, life * lifeBarWidth);
 
         if (Input.GetButton("Boost") || Input.GetButton("P2_boost") || Input.GetKey(KeyCode.Space)) {
@@ -86,7 +94,7 @@ public class MultiplayerShipController : MonoBehaviour {
             if ((Input.GetButton("Boost") && Input.GetButton("P2_boost")) || Input.GetKey(KeyCode.Space)){
                 // enable thrust
                 if(boostThrust != null ) boostThrust.enableEmission = true;
-                if(isShipInTunnel) rb.AddForce(fwd * 80);
+                rb.AddForce(fwd * 80);
                 fire.SetActive(true);
             } else {
                 if(boostThrust != null ) boostThrust.enableEmission = false;
@@ -98,8 +106,28 @@ public class MultiplayerShipController : MonoBehaviour {
             if(boostThrust != null ) boostThrust.enableEmission = false;
             fire.SetActive(false);
         }
+=======
+        if (Input.GetButton("Boost") || Input.GetButton("P2_boost") || Input.GetKey(KeyCode.Space)){
+            //enable thruster charge effect and sound
+            if (boostChargeEffect != null)
+                boostChargeEffect.enableEmission = true;
+            if ((Input.GetButton("Boost") && Input.GetButton("P2_boost")) || Input.GetKey(KeyCode.Space)){
+                // enable thruster boost effect
+                if(boostThrustEffect != null)
+                    boostThrustEffect.enableEmission = true;
+                rb.AddForceAtPosition(fwd * 80, transform.position + fwd);
+            } else {
+                // disable boost
 
-        Debug.Log("isShipInTunnel " + (isShipInTunnel?"yes":"no"));
+            }
+        } else {
+            // disable both
+            if (boostChargeEffect != null) boostChargeEffect.enableEmission = false;
+            if (boostThrustEffect != null) boostThrustEffect.enableEmission = false;
+        }
+        
+        Debug.Log(Input.inputString);
+>>>>>>> 9fd148963d123f4ad98d44454cb2fb6df70f5e56
 	}
 
     public void ExitTunnel()
@@ -118,6 +146,5 @@ public class MultiplayerShipController : MonoBehaviour {
     {
         var spline = GameObject.FindObjectOfType<BezierSpline>();
         var distance = spline.ShortestDistanceFromPoint(transform.position);
-        isShipInTunnel = distance < 50;
     }
 }

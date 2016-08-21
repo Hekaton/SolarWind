@@ -247,7 +247,7 @@ public class BezierSpline : MonoBehaviour {
 
         obj.Value = Progression * 100;
         
-        Debug.Log("minDistance: " + minDistance + ", progression " + Progression * 100 + "%");
+        //Debug.Log("minDistance: " + minDistance + ", progression " + Progression * 100 + "%");
 
         return minDistance;
     }

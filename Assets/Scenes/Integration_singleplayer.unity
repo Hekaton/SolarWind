@@ -1570,15 +1570,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010261679688, guid: 8b52fc08ba5bd4e0ab1307dc9fd23a4e, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000014030271432, guid: 8b52fc08ba5bd4e0ab1307dc9fd23a4e, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000010692357288, guid: 8b52fc08ba5bd4e0ab1307dc9fd23a4e, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000012743282930, guid: 8b52fc08ba5bd4e0ab1307dc9fd23a4e,
         type: 2}

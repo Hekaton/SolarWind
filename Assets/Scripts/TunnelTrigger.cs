@@ -18,9 +18,9 @@ public class TunnelTrigger : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log("Trigger Enter");
         if (col.tag == "ShipCore")
         {
+            //Debug.Log("Trigger Enter");
             col.GetComponentInParent<MultiplayerShipController>().ExitTunnel();
         }
     }

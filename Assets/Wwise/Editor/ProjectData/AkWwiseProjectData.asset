@@ -11,39 +11,39 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: AkWwiseProjectData
   m_EditorClassIdentifier: Assembly-CSharp-Editor::AkWwiseProjectData
-  CurrentPluginConfig: Profile
+  CurrentPluginConfig: 50726f66696c65
   EventWwu:
-  - PhysicalPath: Events\Default Work Unit.wwu
+  - PhysicalPath: 4576656e74735c44656661756c7420576f726b20556e69742e777775
     ParentPhysicalPath: 
-    Guid: '{F8DCFBDF-42A6-4724-9CC1-82A7DD2A2590}'
+    Guid: 7b46384443464244462d343241362d343732342d394343312d3832413744443241323539307d
     m_lastTimePsrt1: 1749244463
     m_lastTimePart2: -1999386154
     List: []
   AuxBusWwu:
-  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+  - PhysicalPath: 4d61737465722d4d69786572204869657261726368795c44656661756c7420576f726b20556e69742e777775
     ParentPhysicalPath: 
-    Guid: '{B76E071A-7228-4638-8A51-2D8ADDB8751C}'
+    Guid: 7b42373645303731412d373232382d343633382d384135312d3244384144444238373531437d
     m_lastTimePsrt1: 1749264465
     m_lastTimePart2: -1999386154
     List: []
   StateWwu:
-  - PhysicalPath: States\Default Work Unit.wwu
+  - PhysicalPath: 5374617465735c44656661756c7420576f726b20556e69742e777775
     ParentPhysicalPath: 
-    Guid: '{40009E55-D1EA-46F5-802F-9BDC3996EC5C}'
+    Guid: 7b34303030394535352d443145412d343646352d383032462d3942444333393936454335437d
     m_lastTimePsrt1: 1754034942
     m_lastTimePart2: -1999386154
     List: []
   SwitchWwu:
-  - PhysicalPath: Switches\Default Work Unit.wwu
+  - PhysicalPath: 53776974636865735c44656661756c7420576f726b20556e69742e777775
     ParentPhysicalPath: 
-    Guid: '{0B6B3BD9-6624-4A68-B1E7-FA0A658ACC4A}'
+    Guid: 7b30423642334244392d363632342d344136382d423145372d4641304136353841434334417d
     m_lastTimePsrt1: 1754044943
     m_lastTimePart2: -1999386154
     List: []
   BankWwu:
-  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+  - PhysicalPath: 536f756e6442616e6b735c44656661756c7420576f726b20556e69742e777775
     ParentPhysicalPath: 
-    Guid: '{968A0E31-A0B3-4012-9431-5634C00B0CA2}'
+    Guid: 7b39363841304533312d413042332d343031322d393433312d3536333443303042304341327d
     m_lastTimePsrt1: 1754024941
     m_lastTimePart2: -1999386154
     List: []
@@ -51,8 +51,8 @@ MonoBehaviour:
   m_lastPopulateTimePsrt1: 0
   m_lastPopulateTimePart2: 0
   autoPopulateEnabled: 1
-  basePath: Audio\GeneratedSoundBanks
-  language: English(US)
+  basePath: 417564696f5c47656e657261746564536f756e6442616e6b73
+  language: 456e676c69736828555329
   defaultPoolSize: 4096
   lowerPoolSize: 2048
   streamingPoolSize: 1024

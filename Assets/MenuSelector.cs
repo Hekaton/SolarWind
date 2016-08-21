@@ -5,7 +5,7 @@ public class MenuSelector : MonoBehaviour {
 
 	public GameObject[] SelectedList;
 	public GameObject[] UnselectedList;
-	public string[] StageList;
+	public int[] StageList;
 
 	public int index = 0;
 
@@ -29,8 +29,10 @@ public class MenuSelector : MonoBehaviour {
 			UnselectedList [i].SetActive (i!=index);
 		}
 
-		if (Input.GetButton ("Boost") || Input.GetButton ("P2_boost")) {
-			// load stage
+		if (Input.GetButton ("Boost") || Input.GetButton ("P2_boost") || Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space)) {
+            Debug.Log("Loading " + StageList[index]);
+            Application.LoadLevel(StageList[index]);
+
 		}
 	}
 }
