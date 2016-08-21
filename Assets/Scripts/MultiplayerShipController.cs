@@ -32,8 +32,11 @@ public class MultiplayerShipController : MonoBehaviour {
 
 	public float life = 1;
 
-	// Use this for initialization
-	void Start () {
+    public ParticleSystem boostChargeEffect;
+    public ParticleSystem boostThrustEffect;
+
+    // Use this for initialization
+    void Start () {
 		sails = new GameObject[]{ P1SailLeft, P1SailRight, P2SailLeft, P2SailRight };
 		sails_buttons = new string[]{ P1SailLeftButton, P1SailRightButton, P2SailRightButton, P2SailLeftButton };
 		sails_initialValues = new Vector3[sails.Length];
@@ -51,8 +54,9 @@ public class MultiplayerShipController : MonoBehaviour {
 		Vector3 fwd = transform.TransformDirection (new Vector3 (-1, 0, 0));
 		Vector3 u = transform.TransformDirection (new Vector3 (0, 1, 0));
 		Vector3 r = transform.TransformDirection (new Vector3 (0, 0, 1));
+        Rigidbody rb = GetComponent<Rigidbody>();
 
-		for (int i = 0, ii = sails.Length; i < ii; i++) {
+        for (int i = 0, ii = sails.Length; i < ii; i++) {
 			if (sails [i] != null) { // if sail exists
 				string tweakAxis = (i<2)?"P1Horizontal":"P2Horizontal";
 
@@ -61,7 +65,6 @@ public class MultiplayerShipController : MonoBehaviour {
 
 				sails[i].transform.localEulerAngles = sails_initialValues[i] + new Vector3(0, tweak * 30, Mathf.LerpAngle(closedAngle, openAngle, intencity));
 				// adjust forces based on sail deployment (just lerp it)
-				Rigidbody rb = GetComponent<Rigidbody>();
 				if (rb != null) {
 					Vector3 f = fwd * intencity * windForce;
 					Vector3 p = transform.position + (u - r - u * Mathf.Floor (i / 2) * 2 + r * (i==1||i==2?1:0) * 2) * 10;
@@ -71,7 +74,26 @@ public class MultiplayerShipController : MonoBehaviour {
 			}
 		}
 
-		lifeBar.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, life * lifeBarWidth);
+        if (Input.GetButton("Boost") || Input.GetButton("P2_boost") || Input.GetKey(KeyCode.Space)){
+            //enable thruster charge effect and sound
+            if (boostChargeEffect != null)
+                boostChargeEffect.enableEmission = true;
+            if ((Input.GetButton("Boost") && Input.GetButton("P2_boost")) || Input.GetKey(KeyCode.Space)){
+                // enable thruster boost effect
+                if(boostThrustEffect != null)
+                    boostThrustEffect.enableEmission = true;
+                rb.AddForceAtPosition(fwd * 80, transform.position + fwd);
+            } else {
+                // disable boost
+
+            }
+        } else {
+            // disable both
+            if (boostChargeEffect != null) boostChargeEffect.enableEmission = false;
+            if (boostThrustEffect != null) boostThrustEffect.enableEmission = false;
+        }
+        
+        Debug.Log(Input.inputString);
 	}
 
     public void ExitTunnel()
