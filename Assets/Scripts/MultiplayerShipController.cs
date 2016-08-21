@@ -27,6 +27,11 @@ public class MultiplayerShipController : MonoBehaviour {
 	private string[] sails_buttons;
 	private Vector3[] sails_initialValues;
 
+	public RectTransform lifeBar;
+	public float lifeBarWidth = 1920;
+
+	public float life = 1;
+
 	// Use this for initialization
 	void Start () {
 		sails = new GameObject[]{ P1SailLeft, P1SailRight, P2SailLeft, P2SailRight };
@@ -66,7 +71,7 @@ public class MultiplayerShipController : MonoBehaviour {
 			}
 		}
 
-	    
+		lifeBar.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, life * lifeBarWidth);
 	}
 
     public void ExitTunnel()
