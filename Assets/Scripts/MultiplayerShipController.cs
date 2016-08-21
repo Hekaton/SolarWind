@@ -47,7 +47,7 @@ public class MultiplayerShipController : MonoBehaviour {
 				string tweakAxis = (i<2)?"P1Horizontal":"P2Horizontal";
 
 				float tweak = Input.GetAxis (tweakAxis);
-				float intencity = Input.GetAxis (sails_buttons [i]);
+				float intencity = 1-Input.GetAxis (sails_buttons [i]);
 
 				sails[i].transform.localEulerAngles = sails_initialValues[i] + new Vector3(0, tweak * 30, Mathf.LerpAngle(closedAngle, openAngle, intencity));
 				// adjust forces based on sail deployment (just lerp it)
