@@ -3,6 +3,9 @@ using System.Collections;
 
 public class MultiplayerShipController : MonoBehaviour {
 
+    private bool isShipInTunnel;
+
+
 	public float windForce = 100;
 
 	public GameObject P1SailLeft;
@@ -24,15 +27,22 @@ public class MultiplayerShipController : MonoBehaviour {
 	private string[] sails_buttons;
 	private Vector3[] sails_initialValues;
 
+	public RectTransform lifeBar;
+	public float lifeBarWidth = 1920;
+
+	public float life = 1;
+
 	// Use this for initialization
 	void Start () {
 		sails = new GameObject[]{ P1SailLeft, P1SailRight, P2SailLeft, P2SailRight };
-		sails_buttons = new string[]{ P1SailLeftButton, P1SailRightButton, P2SailLeftButton, P2SailRightButton };
+		sails_buttons = new string[]{ P1SailLeftButton, P1SailRightButton, P2SailRightButton, P2SailLeftButton };
 		sails_initialValues = new Vector3[sails.Length];
 
 		for (int i = 0, ii = sails.Length; i < ii; i++) {
 			sails_initialValues[i] = sails[i].transform.eulerAngles;
 		}
+
+        isShipInTunnel = true;
 	}                                                                
 	
 	// Update is called once per frame
@@ -47,7 +57,7 @@ public class MultiplayerShipController : MonoBehaviour {
 				string tweakAxis = (i<2)?"P1Horizontal":"P2Horizontal";
 
 				float tweak = Input.GetAxis (tweakAxis);
-				float intencity = Input.GetAxis (sails_buttons [i]);
+				float intencity = 1-Input.GetAxis (sails_buttons [i]);
 
 				sails[i].transform.localEulerAngles = sails_initialValues[i] + new Vector3(0, tweak * 30, Mathf.LerpAngle(closedAngle, openAngle, intencity));
 				// adjust forces based on sail deployment (just lerp it)
@@ -61,5 +71,24 @@ public class MultiplayerShipController : MonoBehaviour {
 			}
 		}
 
+		lifeBar.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, life * lifeBarWidth);
 	}
+
+    public void ExitTunnel()
+    {
+        isShipInTunnel = false;
+        Debug.Log("Exiting Tunnel");
+    }
+
+    public void EnterTunnel()
+    {
+        isShipInTunnel = true;
+        Debug.Log("Entering Tunnel");
+    }
+     
+    public void FixedUpdate()
+    {
+        var spline = GameObject.FindObjectOfType<BezierSpline>();
+        var distance = spline.ShortestDistanceFromPoint(transform.position);
+    }
 }
