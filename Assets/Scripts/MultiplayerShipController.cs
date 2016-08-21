@@ -69,7 +69,6 @@ public class MultiplayerShipController : MonoBehaviour {
 	    
 	}
 
-<<<<<<< HEAD
     public void ExitTunnel()
     {
         isShipInTunnel = false;
@@ -81,13 +80,10 @@ public class MultiplayerShipController : MonoBehaviour {
         isShipInTunnel = true;
         Debug.Log("Entering Tunnel");
     }
-
-=======
      
     public void FixedUpdate()
     {
         var spline = GameObject.FindObjectOfType<BezierSpline>();
         var distance = spline.ShortestDistanceFromPoint(transform.position);
     }
->>>>>>> 9596b5254afe6d1f30ddfd7a8aa3ba6e4ea09688
 }
