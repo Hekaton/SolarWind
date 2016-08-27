@@ -1,7 +1,7 @@
 # SolarWind
 Ubisoft Creative Jam, August 2016
 
-Fly a solar-sailing ship to get to the end of the solar flare. Make sure to stay in the wind for without you cannot stear.
+Fly a solar-sailing ship to get to the end of the solar flare. Make sure to stay in the wind for without it you cannot steer.
 
 Controls:
 Keyboard (singleplayer) : Q, W, O and P control the sails, SPACE activates thrusters.
